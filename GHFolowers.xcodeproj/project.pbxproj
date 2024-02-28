@@ -22,6 +22,8 @@
 		78EF49A32B8F42850057A795 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78EF49A22B8F42850057A795 /* UIViewController+Ext.swift */; };
 		78EF49AA2B8F4A150057A795 /* Follower.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78EF49A92B8F4A150057A795 /* Follower.swift */; };
 		78EF49AD2B8F4AEB0057A795 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78EF49AC2B8F4AEB0057A795 /* User.swift */; };
+		78EF49B02B8F4F670057A795 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78EF49AF2B8F4F670057A795 /* NetworkManager.swift */; };
+		78EF49B32B8F59850057A795 /* ErrorMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78EF49B22B8F59850057A795 /* ErrorMessage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +44,8 @@
 		78EF49A22B8F42850057A795 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
 		78EF49A92B8F4A150057A795 /* Follower.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Follower.swift; sourceTree = "<group>"; };
 		78EF49AC2B8F4AEB0057A795 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		78EF49AF2B8F4F670057A795 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		78EF49B22B8F59850057A795 /* ErrorMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,11 +78,14 @@
 		786833282B8E6F3A00BB8E8B /* GHFolowers */ = {
 			isa = PBXGroup;
 			children = (
-				78EF49A82B8F4A070057A795 /* Model */,
-				78EF49A72B8F45920057A795 /* Support */,
-				78EF49A62B8F45310057A795 /* Extensions */,
-				78EF49A52B8F45020057A795 /* CustomViews */,
 				78EF49A42B8F44CB0057A795 /* Screens */,
+				78EF49A52B8F45020057A795 /* CustomViews */,
+				78EF49A82B8F4A070057A795 /* Model */,
+				78EF49AE2B8F4F560057A795 /* Manager */,
+				78EF49B12B8F59690057A795 /* Utilities */,
+				78EF49A62B8F45310057A795 /* Extensions */,
+				78EF49A72B8F45920057A795 /* Support */,
+				786833372B8E6F3B00BB8E8B /* Info.plist */,
 			);
 			path = GHFolowers;
 			sourceTree = "<group>";
@@ -120,7 +127,6 @@
 				7868332B2B8E6F3A00BB8E8B /* SceneDelegate.swift */,
 				786833342B8E6F3B00BB8E8B /* LaunchScreen.storyboard */,
 				786833322B8E6F3B00BB8E8B /* Assets.xcassets */,
-				786833372B8E6F3B00BB8E8B /* Info.plist */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -132,6 +138,22 @@
 				78EF49AC2B8F4AEB0057A795 /* User.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		78EF49AE2B8F4F560057A795 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				78EF49AF2B8F4F670057A795 /* NetworkManager.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		78EF49B12B8F59690057A795 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				78EF49B22B8F59850057A795 /* ErrorMessage.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -211,9 +233,11 @@
 				78EF49A32B8F42850057A795 /* UIViewController+Ext.swift in Sources */,
 				7868333E2B8E749200BB8E8B /* SearchVC.swift in Sources */,
 				78EF49A12B8F3C4E0057A795 /* GFAlertVC.swift in Sources */,
+				78EF49B32B8F59850057A795 /* ErrorMessage.swift in Sources */,
 				78EF499F2B8F3B960057A795 /* GFBodyLabel.swift in Sources */,
 				78EF49AA2B8F4A150057A795 /* Follower.swift in Sources */,
 				78EF499D2B8F3A420057A795 /* GFTitleLabel.swift in Sources */,
+				78EF49B02B8F4F670057A795 /* NetworkManager.swift in Sources */,
 				78EF499B2B8F2F6C0057A795 /* FollowerListVC.swift in Sources */,
 				7868332A2B8E6F3A00BB8E8B /* AppDelegate.swift in Sources */,
 				7868332C2B8E6F3A00BB8E8B /* SceneDelegate.swift in Sources */,
