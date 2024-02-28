@@ -70,22 +70,54 @@
 		786833282B8E6F3A00BB8E8B /* GHFolowers */ = {
 			isa = PBXGroup;
 			children = (
-				786833292B8E6F3A00BB8E8B /* AppDelegate.swift */,
-				7868332B2B8E6F3A00BB8E8B /* SceneDelegate.swift */,
-				78EF49962B8F1FD60057A795 /* GFButton.swift */,
-				78EF49982B8F25160057A795 /* GFTextField.swift */,
-				7868333D2B8E749200BB8E8B /* SearchVC.swift */,
-				78EF499C2B8F3A420057A795 /* GFTitleLabel.swift */,
-				78EF499E2B8F3B960057A795 /* GFBodyLabel.swift */,
-				78EF49A02B8F3C4E0057A795 /* GFAlertVC.swift */,
-				78EF49A22B8F42850057A795 /* UIViewController+Ext.swift */,
-				78EF499A2B8F2F6C0057A795 /* FollowerListVC.swift */,
-				7868333F2B8E74C500BB8E8B /* FavoritesListVC.swift */,
-				786833322B8E6F3B00BB8E8B /* Assets.xcassets */,
-				786833342B8E6F3B00BB8E8B /* LaunchScreen.storyboard */,
-				786833372B8E6F3B00BB8E8B /* Info.plist */,
+				78EF49A72B8F45920057A795 /* Support */,
+				78EF49A62B8F45310057A795 /* Extensions */,
+				78EF49A52B8F45020057A795 /* CustomViews */,
+				78EF49A42B8F44CB0057A795 /* Screens */,
 			);
 			path = GHFolowers;
+			sourceTree = "<group>";
+		};
+		78EF49A42B8F44CB0057A795 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				7868333D2B8E749200BB8E8B /* SearchVC.swift */,
+				78EF499A2B8F2F6C0057A795 /* FollowerListVC.swift */,
+				7868333F2B8E74C500BB8E8B /* FavoritesListVC.swift */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		78EF49A52B8F45020057A795 /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				78EF49A02B8F3C4E0057A795 /* GFAlertVC.swift */,
+				78EF49962B8F1FD60057A795 /* GFButton.swift */,
+				78EF49982B8F25160057A795 /* GFTextField.swift */,
+				78EF499C2B8F3A420057A795 /* GFTitleLabel.swift */,
+				78EF499E2B8F3B960057A795 /* GFBodyLabel.swift */,
+			);
+			path = CustomViews;
+			sourceTree = "<group>";
+		};
+		78EF49A62B8F45310057A795 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				78EF49A22B8F42850057A795 /* UIViewController+Ext.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		78EF49A72B8F45920057A795 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				786833292B8E6F3A00BB8E8B /* AppDelegate.swift */,
+				7868332B2B8E6F3A00BB8E8B /* SceneDelegate.swift */,
+				786833342B8E6F3B00BB8E8B /* LaunchScreen.storyboard */,
+				786833322B8E6F3B00BB8E8B /* Assets.xcassets */,
+				786833372B8E6F3B00BB8E8B /* Info.plist */,
+			);
+			path = Support;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
