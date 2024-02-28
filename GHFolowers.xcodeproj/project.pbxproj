@@ -24,6 +24,9 @@
 		78EF49AD2B8F4AEB0057A795 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78EF49AC2B8F4AEB0057A795 /* User.swift */; };
 		78EF49B02B8F4F670057A795 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78EF49AF2B8F4F670057A795 /* NetworkManager.swift */; };
 		78EF49B32B8F59850057A795 /* ErrorMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78EF49B22B8F59850057A795 /* ErrorMessage.swift */; };
+		78EF49BA2B8F63E40057A795 /* FollowerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78EF49B92B8F63E40057A795 /* FollowerCell.swift */; };
+		78EF49BC2B8F64580057A795 /* GFAvatarImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78EF49BB2B8F64580057A795 /* GFAvatarImageView.swift */; };
+		78EF49BF2B8F81BF0057A795 /* UIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78EF49BE2B8F81BF0057A795 /* UIHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +49,9 @@
 		78EF49AC2B8F4AEB0057A795 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		78EF49AF2B8F4F670057A795 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		78EF49B22B8F59850057A795 /* ErrorMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessage.swift; sourceTree = "<group>"; };
+		78EF49B92B8F63E40057A795 /* FollowerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowerCell.swift; sourceTree = "<group>"; };
+		78EF49BB2B8F64580057A795 /* GFAvatarImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFAvatarImageView.swift; sourceTree = "<group>"; };
+		78EF49BE2B8F81BF0057A795 /* UIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,11 +109,12 @@
 		78EF49A52B8F45020057A795 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
-				78EF49A02B8F3C4E0057A795 /* GFAlertVC.swift */,
-				78EF49962B8F1FD60057A795 /* GFButton.swift */,
-				78EF49982B8F25160057A795 /* GFTextField.swift */,
-				78EF499C2B8F3A420057A795 /* GFTitleLabel.swift */,
-				78EF499E2B8F3B960057A795 /* GFBodyLabel.swift */,
+				78EF49BD2B8F65800057A795 /* Images */,
+				78EF49B82B8F639C0057A795 /* Cells */,
+				78EF49B72B8F638A0057A795 /* Alerts */,
+				78EF49B62B8F637A0057A795 /* TextFiields */,
+				78EF49B52B8F63720057A795 /* Labels */,
+				78EF49B42B8F63690057A795 /* Buttons */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -152,8 +159,58 @@
 			isa = PBXGroup;
 			children = (
 				78EF49B22B8F59850057A795 /* ErrorMessage.swift */,
+				78EF49BE2B8F81BF0057A795 /* UIHelper.swift */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		78EF49B42B8F63690057A795 /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				78EF49962B8F1FD60057A795 /* GFButton.swift */,
+			);
+			path = Buttons;
+			sourceTree = "<group>";
+		};
+		78EF49B52B8F63720057A795 /* Labels */ = {
+			isa = PBXGroup;
+			children = (
+				78EF499E2B8F3B960057A795 /* GFBodyLabel.swift */,
+				78EF499C2B8F3A420057A795 /* GFTitleLabel.swift */,
+			);
+			path = Labels;
+			sourceTree = "<group>";
+		};
+		78EF49B62B8F637A0057A795 /* TextFiields */ = {
+			isa = PBXGroup;
+			children = (
+				78EF49982B8F25160057A795 /* GFTextField.swift */,
+			);
+			path = TextFiields;
+			sourceTree = "<group>";
+		};
+		78EF49B72B8F638A0057A795 /* Alerts */ = {
+			isa = PBXGroup;
+			children = (
+				78EF49A02B8F3C4E0057A795 /* GFAlertVC.swift */,
+			);
+			path = Alerts;
+			sourceTree = "<group>";
+		};
+		78EF49B82B8F639C0057A795 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				78EF49B92B8F63E40057A795 /* FollowerCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		78EF49BD2B8F65800057A795 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				78EF49BB2B8F64580057A795 /* GFAvatarImageView.swift */,
+			);
+			path = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -231,8 +288,11 @@
 				786833402B8E74C500BB8E8B /* FavoritesListVC.swift in Sources */,
 				78EF49972B8F1FD60057A795 /* GFButton.swift in Sources */,
 				78EF49A32B8F42850057A795 /* UIViewController+Ext.swift in Sources */,
+				78EF49BF2B8F81BF0057A795 /* UIHelper.swift in Sources */,
 				7868333E2B8E749200BB8E8B /* SearchVC.swift in Sources */,
+				78EF49BC2B8F64580057A795 /* GFAvatarImageView.swift in Sources */,
 				78EF49A12B8F3C4E0057A795 /* GFAlertVC.swift in Sources */,
+				78EF49BA2B8F63E40057A795 /* FollowerCell.swift in Sources */,
 				78EF49B32B8F59850057A795 /* ErrorMessage.swift in Sources */,
 				78EF499F2B8F3B960057A795 /* GFBodyLabel.swift in Sources */,
 				78EF49AA2B8F4A150057A795 /* Follower.swift in Sources */,
@@ -392,7 +452,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -425,7 +485,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
