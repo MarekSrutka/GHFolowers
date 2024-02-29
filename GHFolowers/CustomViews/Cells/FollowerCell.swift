@@ -35,11 +35,8 @@ class FollowerCell: UICollectionViewCell {
     // MARK: - Public Methods
     
     func set(follower: Follower) {
+        avatarImageView.downloadImage(fromURl: follower.avatarUrl)
         usernameLabel.text = follower.login
-        NetworkManager.share.downloadImage(from: follower.avatarUrl) { [weak self] image in
-            guard let self = self else { return }
-            DispatchQueue.main.async { self.avatarImageView.image = image }
-        }
     }
     
     // MARK: - Private Methods

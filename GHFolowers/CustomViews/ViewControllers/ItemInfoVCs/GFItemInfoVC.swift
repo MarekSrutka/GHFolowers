@@ -69,9 +69,7 @@ class GFItemInfoVC: UIViewController {
     
     // MARK: - Actions
     
-    @objc func actionButtonTapped() {
-        // Handle action button tap
-    }
+    @objc func actionButtonTapped() { }
     
     // MARK: - Layout
     
