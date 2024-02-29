@@ -7,6 +7,11 @@
 
 import UIKit
 
+// Protocol for handling follower list requests
+protocol UserInfoVCDelegate: AnyObject {
+    func didRequestFollowers(for username: String)
+}
+
 class UserInfoVC: GFDataLoadingVC {
     
     // MARK: - Properties
@@ -18,7 +23,7 @@ class UserInfoVC: GFDataLoadingVC {
     var itemViews: [UIView] = []
     
     var username: String!
-    weak var delegate: FollowerListVCDelegate!
+    weak var delegate: UserInfoVCDelegate!
 
     // MARK: - Lifecycle Methods
     
@@ -117,19 +122,22 @@ class UserInfoVC: GFDataLoadingVC {
     }
 }
 
-// MARK: - ItemInfoVCDelegate
+// MARK: - Extension for RepoItemVCDelegate
 
-extension UserInfoVC: ItemInfoVCDelegate {
-    
+extension UserInfoVC: GFRepoItemVCDelegate {
     func didTapGitHubProfile(for user: User) {
         guard let url = URL(string: user.htmlUrl) else {
-            presentGFAlertOnMainThread(title: "Invalid URL", message: "The url attached to this user is invalid.", buttonTitle: "Ok")
+            presentGFAlertOnMainThread(title: "Invalid URL", message: "The URL attached to this user is invalid.", buttonTitle: "Ok")
             return
         }
         
         presentSafariVC(with: url)
     }
-    
+}
+
+// MARK: - Extension for FollowerItemVCDelegate
+
+extension UserInfoVC: GFFollowerItemVCDelegate {
     func didTapGetFollowers(for user: User) {
         guard user.followers != 0 else {
             presentGFAlertOnMainThread(title: "No followers", message: "This user has no followers", buttonTitle: "So sad")

@@ -7,11 +7,6 @@
 
 import UIKit
 
-// Protocol for handling follower list requests
-protocol FollowerListVCDelegate: AnyObject {
-    func didRequestFollowers(for username: String)
-}
-
 class FollowerListVC: GFDataLoadingVC {
     
     // Enumeration for collectionView sections
@@ -218,7 +213,7 @@ extension FollowerListVC: UISearchResultsUpdating {
 
 // MARK: - FollowerListVCDelegate
 
-extension FollowerListVC: FollowerListVCDelegate {
+extension FollowerListVC: UserInfoVCDelegate {
     // Handle the request for more followers for a specific username
     func didRequestFollowers(for username: String) {
         self.username = username

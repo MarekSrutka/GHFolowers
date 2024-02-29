@@ -7,9 +7,17 @@
 
 import UIKit
 
+// MARK: - GFRepoItemVCDelegate Protocol
+
+protocol GFRepoItemVCDelegate: AnyObject {
+    func didTapGitHubProfile(for user: User)
+}
+
 // MARK: - GFRepoItemVC
 
 class GFRepoItemVC: GFItemInfoVC {
+    
+    weak var delegate: GFRepoItemVCDelegate!
     
     // MARK: - Lifecycle Methods
     
