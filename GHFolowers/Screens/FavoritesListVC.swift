@@ -9,8 +9,12 @@ import UIKit
 
 class FavoritesListVC: GFDataLoadingVC {
     
+    // MARK: - Properties
+    
     let tableView = UITableView()
     var favorites: [Follower] = []
+    
+    // MARK: - Lifecycle Methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,12 +27,16 @@ class FavoritesListVC: GFDataLoadingVC {
         getFavorites()
     }
     
+    // MARK: - UI Configuration
+    
+    // Configure the main view controller
     func configureViewController() {
         view.backgroundColor = .systemBackground
         title = "Favorites"
         navigationController?.navigationBar.prefersLargeTitles = true
     }
     
+    // Configure the table view
     func configureTableView() {
         view.addSubview(tableView)
         
@@ -41,6 +49,9 @@ class FavoritesListVC: GFDataLoadingVC {
         tableView.register(FavoriteCell.self, forCellReuseIdentifier: FavoriteCell.reuseID)
     }
     
+    // MARK: - Data Fetching
+    
+    // Fetch favorite followers from persistence
     func getFavorites() {
         PersistanceManager.retrieveFavorites { [weak self] result in
             guard let self = self else { return }
@@ -63,7 +74,10 @@ class FavoritesListVC: GFDataLoadingVC {
     }
 }
 
+// MARK: - UITableViewDelegate and UITableViewDataSource
+
 extension FavoritesListVC: UITableViewDelegate, UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return favorites.count
     }
@@ -90,10 +104,11 @@ extension FavoritesListVC: UITableViewDelegate, UITableViewDataSource {
         favorites.remove(at: indexPath.row)
         tableView.deleteRows(at: [indexPath], with: .left)
         
+        // Remove the favorite follower from persistence
         PersistanceManager.updateWith(favorite: favorite, actionType: .remove) { [weak self] error in
             guard let self = self else { return }
             guard let error = error else { return }
-            self.presentGFAlertOnMainThread(title: "Unalble to remove", message: error.rawValue, buttonTitle: "Ok")
+            self.presentGFAlertOnMainThread(title: "Unable to remove", message: error.rawValue, buttonTitle: "Ok")
         }
     }
 }

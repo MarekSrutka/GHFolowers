@@ -9,15 +9,20 @@ import UIKit
 
 class SearchVC: UIViewController {
     
+    // MARK: - Properties
+    
     let logoImageView = UIImageView()
     let usernameTextField = GFTextField()
-    let callToActionBUtton = GFButton(title: "Get Followers", backgroundColor: .systemGreen)
+    let callToActionButton = GFButton(title: "Get Followers", backgroundColor: .systemGreen)
     
     var isUsernameEntered: Bool { return !usernameTextField.text!.isEmpty }
 
+    // MARK: - Lifecycle Methods
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
+        view.addSubviews(logoImageView, usernameTextField, callToActionButton)
         configureLogoImageView()
         configureTextField()
         configureCallToActionButton()
@@ -30,10 +35,14 @@ class SearchVC: UIViewController {
         navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
+    // MARK: - UI Configuration
+    
     func createDismissKeyboardTapGesture() {
         let tap = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
         view.addGestureRecognizer(tap)
     }
+    
+    // MARK: - Actions
     
     @objc func pushFollowerListVC() {
         guard isUsernameEntered else {
@@ -47,8 +56,9 @@ class SearchVC: UIViewController {
         navigationController?.pushViewController(followerListVC, animated: true)
     }
     
+    // MARK: - UI Element Configuration
+    
     func configureLogoImageView() {
-        view.addSubview(logoImageView)
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
         logoImageView.image = Images.ghLogo
         
@@ -61,7 +71,6 @@ class SearchVC: UIViewController {
     }
     
     func configureTextField() {
-        view.addSubview(usernameTextField)
         usernameTextField.delegate = self
         
         NSLayoutConstraint.activate([
@@ -73,18 +82,18 @@ class SearchVC: UIViewController {
     }
     
     func configureCallToActionButton() {
-        view.addSubview(callToActionBUtton)
-        callToActionBUtton.addTarget(self, action: #selector(pushFollowerListVC), for: .touchUpInside)
+        callToActionButton.addTarget(self, action: #selector(pushFollowerListVC), for: .touchUpInside)
         
         NSLayoutConstraint.activate([
-            callToActionBUtton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -50),
-            callToActionBUtton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
-            callToActionBUtton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
-            callToActionBUtton.heightAnchor.constraint(equalToConstant: 50)
+            callToActionButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -50),
+            callToActionButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
+            callToActionButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
+            callToActionButton.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
 }
 
+// MARK: - Extension for UITextFieldDelegate
 
 extension SearchVC: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

@@ -7,13 +7,17 @@
 
 import UIKit
 
+// Protocol for handling follower list requests
 protocol FollowerListVCDelegate: AnyObject {
     func didRequestFollowers(for username: String)
 }
 
 class FollowerListVC: GFDataLoadingVC {
     
+    // Enumeration for collectionView sections
     enum Section { case main }
+    
+    // MARK: - Properties
     
     var username: String!
     var followers: [Follower] = []
@@ -23,8 +27,11 @@ class FollowerListVC: GFDataLoadingVC {
     var isSearching = false
     var isLoadingMoreFollowers = false
     
+    // UI components
     var collectionView: UICollectionView!
     var dataSource: UICollectionViewDiffableDataSource<Section, Follower>!
+    
+    // MARK: - Initialization
     
     init(username: String) {
         super.init(nibName: nil, bundle: nil)
@@ -35,6 +42,8 @@ class FollowerListVC: GFDataLoadingVC {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    // MARK: - Lifecycle Methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,6 +58,9 @@ class FollowerListVC: GFDataLoadingVC {
         super.viewWillAppear(animated)
     }
     
+    // MARK: - UI Configuration
+    
+    // Configure the main view controller
     func configureViewController() {
         view.backgroundColor = .systemBackground
         navigationController?.setNavigationBarHidden(false, animated: true)
@@ -59,6 +71,9 @@ class FollowerListVC: GFDataLoadingVC {
         navigationItem.rightBarButtonItem = addButton
     }
     
+    // MARK: - UI Element Configuration
+    
+    // Configure the collection view
     func configureCollectionView() {
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: UIHelper.createThreeColumnFlowLayout(in: view))
         view.addSubview(collectionView)
@@ -66,6 +81,7 @@ class FollowerListVC: GFDataLoadingVC {
         collectionView.register(FollowerCell.self, forCellWithReuseIdentifier: FollowerCell.reuseID)
     }
     
+    // Configure the search controller
     func configureSearchController() {
         let searchController = UISearchController()
         searchController.searchResultsUpdater = self
@@ -74,6 +90,7 @@ class FollowerListVC: GFDataLoadingVC {
         navigationItem.searchController = searchController
     }
     
+    // Fetch followers from the network
     func getFollowers(username: String, page: Int) {
         showLoadingView()
         isLoadingMoreFollowers = true
@@ -104,6 +121,7 @@ class FollowerListVC: GFDataLoadingVC {
         }
     }
     
+    // Configure the data source for the collection view
     func configureDataSource() {
         dataSource = UICollectionViewDiffableDataSource<Section, Follower>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, follower) -> UICollectionViewCell? in
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FollowerCell.reuseID, for: indexPath) as! FollowerCell
@@ -113,6 +131,7 @@ class FollowerListVC: GFDataLoadingVC {
         })
     }
     
+    // Update data in the collection view
     func updateData(on followers: [Follower]) {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Follower>()
         snapshot.appendSections([.main])
@@ -122,6 +141,9 @@ class FollowerListVC: GFDataLoadingVC {
         }
     }
     
+    // MARK: - Actions
+    
+    // Action when the add button is tapped
     @objc func addButtonTapped() {
         showLoadingView()
         
@@ -148,8 +170,10 @@ class FollowerListVC: GFDataLoadingVC {
     }
 }
 
+// MARK: - UICollectionViewDelegate
 
 extension FollowerListVC: UICollectionViewDelegate {
+    // Load more followers when scrolling reaches the end
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         let offsetY = scrollView.contentOffset.y
         let contentHeight = scrollView.contentSize.height
@@ -162,9 +186,10 @@ extension FollowerListVC: UICollectionViewDelegate {
         }
     }
     
+    // Handle selection of a follower cell
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let actioveArray = isSearching ? filteredFollowers : followers
-        let follower = actioveArray[indexPath.item]
+        let activeArray = isSearching ? filteredFollowers : followers
+        let follower = activeArray[indexPath.item]
         
         let destVC = UserInfoVC()
         destVC.delegate = self
@@ -174,9 +199,10 @@ extension FollowerListVC: UICollectionViewDelegate {
     }
 }
 
+// MARK: - UISearchResultsUpdating
 
 extension FollowerListVC: UISearchResultsUpdating {
-    
+    // Update search results based on the entered text in the search bar
     func updateSearchResults(for searchController: UISearchController) {
         guard let filter = searchController.searchBar.text, !filter.isEmpty else {
             filteredFollowers.removeAll()
@@ -190,8 +216,10 @@ extension FollowerListVC: UISearchResultsUpdating {
     }
 }
 
+// MARK: - FollowerListVCDelegate
+
 extension FollowerListVC: FollowerListVCDelegate {
-    
+    // Handle the request for more followers for a specific username
     func didRequestFollowers(for username: String) {
         self.username = username
         title = username

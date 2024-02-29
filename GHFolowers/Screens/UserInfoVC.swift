@@ -7,12 +7,9 @@
 
 import UIKit
 
-protocol UserInfoVCDelegate: AnyObject {
-    func didTapGitHubProfile(for user: User)
-    func didTapGetFollowers(for user: User)
-}
-
 class UserInfoVC: GFDataLoadingVC {
+    
+    // MARK: - Properties
     
     let headerView = UIView()
     let itemViewOne = UIView()
@@ -23,6 +20,8 @@ class UserInfoVC: GFDataLoadingVC {
     var username: String!
     weak var delegate: FollowerListVCDelegate!
 
+    // MARK: - Lifecycle Methods
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureViewController()
@@ -30,24 +29,30 @@ class UserInfoVC: GFDataLoadingVC {
         getUserInfo()
     }
     
+    // MARK: - UI Configuration
+    
     func configureViewController() {
         view.backgroundColor = .systemBackground
         let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(dismissVC))
         navigationItem.rightBarButtonItem = doneButton
     }
     
+    // MARK: - Network Request
+    
     func getUserInfo() {
         NetworkManager.share.getUserInfo(for: username) { [weak self] result in
             guard let self = self else { return }
             
             switch result {
-            case.success(let user):
+            case .success(let user):
                 DispatchQueue.main.async { self.configureUIElements(with: user) }
-            case.failure(let error):
+            case .failure(let error):
                 self.presentGFAlertOnMainThread(title: "Something went wrong", message: error.rawValue, buttonTitle: "Ok")
             }
         }
     }
+    
+    // MARK: - UI Element Configuration
     
     func configureUIElements(with user: User) {
         
@@ -63,6 +68,8 @@ class UserInfoVC: GFDataLoadingVC {
         self.dateLabel.text = ("GitHub since \(user.createdAt.convertToMonthYearFormat())")
     }
     
+    // MARK: - Layout
+    
     func layouUI() {
         let padding: CGFloat = 20
         let itemHeight: CGFloat = 140
@@ -76,13 +83,12 @@ class UserInfoVC: GFDataLoadingVC {
             NSLayoutConstraint.activate([
                 itemView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
                 itemView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
-                
             ])
         }
         
         NSLayoutConstraint.activate([
             headerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            headerView.heightAnchor.constraint(equalToConstant: 180),
+            headerView.heightAnchor.constraint(equalToConstant: 210),
             
             itemViewOne.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: padding),
             itemViewOne.heightAnchor.constraint(equalToConstant: itemHeight),
@@ -91,9 +97,11 @@ class UserInfoVC: GFDataLoadingVC {
             itemViewTwo.heightAnchor.constraint(equalToConstant: itemHeight),
             
             dateLabel.topAnchor.constraint(equalTo: itemViewTwo.bottomAnchor, constant: padding),
-            dateLabel.heightAnchor.constraint(equalToConstant: 18)
+            dateLabel.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
+    
+    // MARK: - Child View Controller Management
     
     func add(childVC: UIViewController, to containerView: UIView) {
         addChild(childVC)
@@ -102,12 +110,17 @@ class UserInfoVC: GFDataLoadingVC {
         childVC.didMove(toParent: self)
     }
     
+    // MARK: - Actions
+    
     @objc func dismissVC() {
         dismiss(animated: true)
     }
 }
 
-extension UserInfoVC: UserInfoVCDelegate {
+// MARK: - ItemInfoVCDelegate
+
+extension UserInfoVC: ItemInfoVCDelegate {
+    
     func didTapGitHubProfile(for user: User) {
         guard let url = URL(string: user.htmlUrl) else {
             presentGFAlertOnMainThread(title: "Invalid URL", message: "The url attached to this user is invalid.", buttonTitle: "Ok")
@@ -125,6 +138,4 @@ extension UserInfoVC: UserInfoVCDelegate {
         delegate.didRequestFollowers(for: user.login)
         dismissVC()
     }
-    
-    
 }

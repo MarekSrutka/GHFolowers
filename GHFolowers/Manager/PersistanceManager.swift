@@ -7,18 +7,29 @@
 
 import Foundation
 
+// MARK: - PersistanceActionType
+
 enum PersistanceActionType {
     case add, remove
 }
 
+// MARK: - PersistanceManager
+
 enum PersistanceManager {
+    
+    // MARK: - Properties
+    
     static private let defaults = UserDefaults.standard
+    
+    // MARK: - Keys
     
     enum Keys {
         static let favourites = "favorites"
     }
     
-    static func updateWith(favorite: Follower, actionType: PersistanceActionType, compleded: @escaping (GFError?) -> Void) {
+    // MARK: - Public Methods
+    
+    static func updateWith(favorite: Follower, actionType: PersistanceActionType, completed: @escaping (GFError?) -> Void) {
         retrieveFavorites { result in
             switch result {
             case .success(let favorites):
@@ -27,7 +38,7 @@ enum PersistanceManager {
                 switch actionType {
                 case .add:
                     guard !retrievedFavorites.contains(favorite) else {
-                        compleded(.alreadyInFavorites)
+                        completed(.alreadyInFavorites)
                         return
                     }
                     
@@ -37,10 +48,10 @@ enum PersistanceManager {
                     retrievedFavorites.removeAll { $0.login == favorite.login }
                 }
                 
-                compleded(save(favorites: retrievedFavorites))
+                completed(save(favorites: retrievedFavorites))
                 
             case .failure(let error):
-                compleded(error)
+                completed(error)
             }
         }
     }

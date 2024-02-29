@@ -7,7 +7,11 @@
 
 import UIKit
 
+// MARK: - GFBodyLabel
+
 class GFBodyLabel: UILabel {
+    
+    // MARK: - Initialization
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -23,9 +27,12 @@ class GFBodyLabel: UILabel {
         self.textAlignment = textAlignment
     }
     
+    // MARK: - Private Methods
+    
     private func configure() {
         textColor = .secondaryLabel
         font = UIFont.preferredFont(forTextStyle: .body)
+        adjustsFontForContentSizeCategory = true
         adjustsFontSizeToFitWidth = true
         minimumScaleFactor = 0.75
         lineBreakMode = .byWordWrapping

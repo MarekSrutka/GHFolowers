@@ -7,10 +7,17 @@
 
 import UIKit
 
+// MARK: - GFDataLoadingVC
+
 class GFDataLoadingVC: UIViewController {
+    
+    // MARK: - Properties
     
     var containerView: UIView!
 
+    // MARK: - Loading View Methods
+    
+    /// Displays a loading view with a semi-transparent background and a spinning activity indicator.
     func showLoadingView() {
         containerView = UIView(frame: view.bounds)
         view.addSubview(containerView)
@@ -34,6 +41,7 @@ class GFDataLoadingVC: UIViewController {
         activityIndicator.startAnimating()
     }
     
+    /// Dismisses the loading view by removing it from the superview.
     func dismissLoadingView() {
         DispatchQueue.main.async {
             self.containerView.removeFromSuperview()
@@ -41,6 +49,13 @@ class GFDataLoadingVC: UIViewController {
         }
     }
     
+    // MARK: - Empty State View Methods
+    
+    /// Displays an empty state view with a message.
+    ///
+    /// - Parameters:
+    ///   - message: The message to be displayed in the empty state view.
+    ///   - view: The view in which the empty state view will be added.
     func showEmptyStateView(message: String, in view: UIView) {
         let emptyStateView = GFEmptyStateView(message: message)
         emptyStateView.frame = view.bounds

@@ -7,12 +7,18 @@
 
 import UIKit
 
+// MARK: - FavoriteCell
+
 class FavoriteCell: UITableViewCell {
 
+    // MARK: - Properties
+    
     static let reuseID = "FavoriteCell"
     
     let avatarImageView = GFAvatarImageView(frame: .zero)
     let usernameLabel = GFTitleLabel(textAlignment: .left, fontSize: 26)
+    
+    // MARK: - Initialization
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -23,6 +29,8 @@ class FavoriteCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Public Methods
+    
     func set(favorite: Follower) {
         usernameLabel.text = favorite.login
         NetworkManager.share.downloadImage(from: favorite.avatarUrl) { [weak self] image in
@@ -31,9 +39,10 @@ class FavoriteCell: UITableViewCell {
         }
     }
     
+    // MARK: - Private Methods
+    
     private func configure() {
-        addSubview(avatarImageView)
-        addSubview(usernameLabel)
+        addSubviews(avatarImageView, usernameLabel)
         
         accessoryType = .disclosureIndicator
         let padding: CGFloat = 12

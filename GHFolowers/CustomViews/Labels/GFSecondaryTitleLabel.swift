@@ -7,8 +7,12 @@
 
 import UIKit
 
+// MARK: - GFSecondaryTitleLabel
+
 class GFSecondaryTitleLabel: UILabel {
 
+    // MARK: - Initialization
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
@@ -22,6 +26,8 @@ class GFSecondaryTitleLabel: UILabel {
         self.init(frame: .zero)
         self.font = UIFont.systemFont(ofSize: fontSize, weight: .medium)
     }
+    
+    // MARK: - Private Methods
     
     private func configure() {
         textColor = .secondaryLabel

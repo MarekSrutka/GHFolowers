@@ -7,7 +7,11 @@
 
 import UIKit
 
+// MARK: - GFUserInfoHeaderVC
+
 class GFUserInfoHeaderVC: UIViewController {
+    
+    // MARK: - Properties
     
     let avatarImageView = GFAvatarImageView(frame: .zero)
     let usernameLabel = GFTitleLabel(textAlignment: .left, fontSize: 34)
@@ -18,6 +22,8 @@ class GFUserInfoHeaderVC: UIViewController {
     
     var user: User!
     
+    // MARK: - Initialization
+    
     init(user: User!) {
         super.init(nibName: nil, bundle: nil)
         self.user = user
@@ -27,12 +33,16 @@ class GFUserInfoHeaderVC: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Lifecycle Methods
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         addSubviews()
         layoutUI()
         configureUIElements()
     }
+    
+    // MARK: - UI Configuration
     
     func configureUIElements() {
         downloadAvatarImage()
@@ -53,13 +63,13 @@ class GFUserInfoHeaderVC: UIViewController {
         }
     }
     
+    // MARK: - Layout Methods
+    
     func addSubviews() {
-        view.addSubview(avatarImageView)
-        view.addSubview(usernameLabel)
-        view.addSubview(nameLabel)
-        view.addSubview(locationImageView)
-        view.addSubview(locationLabel)
-        view.addSubview(bioLabel)
+        view.addSubviews(
+            avatarImageView, usernameLabel, nameLabel,
+            locationImageView, locationLabel, bioLabel
+        )
     }
     
     func layoutUI() {
@@ -96,8 +106,7 @@ class GFUserInfoHeaderVC: UIViewController {
             bioLabel.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: textImagePadding),
             bioLabel.leadingAnchor.constraint(equalTo: avatarImageView.leadingAnchor),
             bioLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            bioLabel.heightAnchor.constraint(equalToConstant: 60)
+            bioLabel.heightAnchor.constraint(equalToConstant: 90)
         ])
-        
     }
 }

@@ -7,7 +7,18 @@
 
 import UIKit
 
+// MARK: - ItemInfoVCDelegate Protocol
+
+protocol ItemInfoVCDelegate: AnyObject {
+    func didTapGitHubProfile(for user: User)
+    func didTapGetFollowers(for user: User)
+}
+
+// MARK: - GFItemInfoVC
+
 class GFItemInfoVC: UIViewController {
+    
+    // MARK: - Properties
     
     let stackView = UIStackView()
     let itemInfoViewOne = GFItemInfoView()
@@ -15,7 +26,9 @@ class GFItemInfoVC: UIViewController {
     let actionButton = GFButton()
     
     var user: User!
-    weak var delegate: UserInfoVCDelegate!
+    weak var delegate: ItemInfoVCDelegate!
+    
+    // MARK: - Initialization
     
     init(user: User!) {
         super.init(nibName: nil, bundle: nil)
@@ -26,6 +39,8 @@ class GFItemInfoVC: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Lifecycle Methods
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureBackgroundView()
@@ -34,7 +49,9 @@ class GFItemInfoVC: UIViewController {
         configureStackView()
     }
     
-    private func configureBackgroundView () {
+    // MARK: - UI Configuration
+    
+    private func configureBackgroundView() {
         view.layer.cornerRadius = 18
         view.backgroundColor = .secondarySystemBackground
     }
@@ -51,13 +68,16 @@ class GFItemInfoVC: UIViewController {
         actionButton.addTarget(self, action: #selector(actionButtonTapped), for: .touchUpInside)
     }
     
+    // MARK: - Actions
+    
     @objc func actionButtonTapped() {
-        
+        // Handle action button tap
     }
     
+    // MARK: - Layout
+    
     private func layoutUI() {
-        view.addSubview(stackView)
-        view.addSubview(actionButton)
+        view.addSubviews(stackView, actionButton)
         
         stackView.translatesAutoresizingMaskIntoConstraints = false
         let padding: CGFloat = 20
@@ -72,7 +92,6 @@ class GFItemInfoVC: UIViewController {
             actionButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
             actionButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
             actionButton.heightAnchor.constraint(equalToConstant: 44)
-            
         ])
     }
 }

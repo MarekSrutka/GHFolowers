@@ -7,15 +7,23 @@
 
 import UIKit
 
-enum ItemInfoType{
+// MARK: - ItemInfoType Enumeration
+
+enum ItemInfoType {
     case repos, gists, followers, following
 }
 
+// MARK: - GFItemInfoView
+
 class GFItemInfoView: UIView {
+    
+    // MARK: - Properties
     
     let symbolImageView = UIImageView()
     let titleLabel = GFTitleLabel(textAlignment: .left, fontSize: 14)
     let countLabel = GFTitleLabel(textAlignment: .center, fontSize: 14)
+    
+    // MARK: - Initialization
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -26,10 +34,10 @@ class GFItemInfoView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Configuration
+    
     private func configure() {
-        addSubview(symbolImageView)
-        addSubview(titleLabel)
-        addSubview(countLabel)
+        addSubviews(symbolImageView, titleLabel, countLabel)
         
         symbolImageView.translatesAutoresizingMaskIntoConstraints = false
         symbolImageView.contentMode = .scaleAspectFill
@@ -53,6 +61,8 @@ class GFItemInfoView: UIView {
         ])
     }
 
+    // MARK: - Public Methods
+    
     func set(itemIfonType: ItemInfoType, withCount: Int) {
         switch itemIfonType {
         case .repos:

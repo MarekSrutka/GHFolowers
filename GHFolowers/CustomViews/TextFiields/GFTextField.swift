@@ -7,7 +7,11 @@
 
 import UIKit
 
+// MARK: - GFTextField
+
 class GFTextField: UITextField {
+    
+    // MARK: - Initialization
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -17,6 +21,8 @@ class GFTextField: UITextField {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    // MARK: - Private Methods
     
     private func configure() {
         translatesAutoresizingMaskIntoConstraints = false

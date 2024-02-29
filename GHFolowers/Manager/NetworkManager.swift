@@ -7,25 +7,34 @@
 
 import UIKit
 
+// MARK: - NetworkManager
+
 class NetworkManager {
+    
+    // MARK: - Properties
+    
     static let share = NetworkManager()
     private let baseUrl: String = "https://api.github.com"
     let cache = NSCache<NSString, UIImage>()
     
+    // MARK: - Private Initialization
+    
     private init() {}
+    
+    // MARK: - Public Methods
     
     func getFollowers(for username: String, page: Int, completed: @escaping (Result<[Follower], GFError>) -> Void) {
         let endpoint = baseUrl + "/users" + "/\(username)/followers?per_page=100&page=\(page)"
         
         guard let url = URL(string: endpoint) else {
-            completed(.failure(.invalitUsername))
+            completed(.failure(.invalidUsername))
             return
         }
         
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
             
             if let _ = error {
-                completed(.failure(.unabledToComplete))
+                completed(.failure(.unableToComplete))
             }
             
             guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
@@ -55,14 +64,14 @@ class NetworkManager {
        let endpoint = baseUrl + "/users" + "/\(username)"
         
         guard let url = URL(string: endpoint) else {
-            completed(.failure(.invalitUsername))
+            completed(.failure(.invalidUsername))
             return
         }
         
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
             
             if let _ = error {
-                completed(.failure(.unabledToComplete))
+                completed(.failure(.unableToComplete))
             }
             
             guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
@@ -97,7 +106,7 @@ class NetworkManager {
             return
         }
         
-        guard let url = URL(string: urlString) else { 
+        guard let url = URL(string: urlString) else {
             completed(nil)
             return
         }
