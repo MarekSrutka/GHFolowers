@@ -11,7 +11,6 @@ class GFButton: UIButton {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        // custom code
         configure()
     }
     
@@ -19,11 +18,10 @@ class GFButton: UIButton {
         fatalError("init(coder:) has not been implemented")
     }
     
-    init(title: String, backgroundColor: UIColor) {
-        super.init(frame: .zero)
+    convenience init(title: String, backgroundColor: UIColor) {
+        self.init(frame: .zero)
         self.setTitle(title, for: .normal)
         self.backgroundColor = backgroundColor
-        configure()
     }
     
     private func configure() {
