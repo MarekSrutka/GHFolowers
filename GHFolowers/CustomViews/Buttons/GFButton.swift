@@ -47,3 +47,7 @@ class GFButton: UIButton {
         configuration?.imagePlacement = .leading
     }
 }
+
+#Preview {
+    return GFButton(title: "Test", color: .blue, systemImageName: SFSymbols.persons)
+}
