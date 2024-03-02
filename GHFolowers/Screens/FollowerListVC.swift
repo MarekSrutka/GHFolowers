@@ -55,6 +55,15 @@ class FollowerListVC: GFDataLoadingVC {
     
     // MARK: - UI Configuration
     
+    override func updateContentUnavailableConfiguration(using state: UIContentUnavailableConfigurationState) {
+        let config = UIContentUnavailableConfiguration.search()
+        if isSearching && filteredFollowers.isEmpty {
+            contentUnavailableConfiguration = UIContentUnavailableConfiguration.search()
+        } else {
+            contentUnavailableConfiguration = nil
+        }
+    }
+    
     // Configure the main view controller
     func configureViewController() {
         view.backgroundColor = .systemBackground
@@ -238,6 +247,7 @@ extension FollowerListVC: UISearchResultsUpdating {
         isSearching = true
         filteredFollowers = followers.filter { $0.login.lowercased().contains(filter.lowercased()) }
         updateData(on: filteredFollowers)
+        setNeedsUpdateContentUnavailableConfiguration()
     }
 }
 
