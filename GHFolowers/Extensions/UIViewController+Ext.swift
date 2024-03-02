@@ -14,18 +14,25 @@ extension UIViewController {
     
     // MARK: - Public Methods
     
-    /// Presents a custom alert on the main thread.
+    /// Presents a custom alert
     /// - Parameters:
     ///   - title: The title of the alert.
     ///   - message: The message displayed in the alert.
     ///   - buttonTitle: The title of the button in the alert.
-    func presentGFAlertOnMainThread(title: String, message: String, buttonTitle: String) {
-        DispatchQueue.main.async {
-            let alertVC = GFAlertVC(title: title, message: message, buttonTitle: buttonTitle)
-            alertVC.modalPresentationStyle = .overFullScreen
-            alertVC.modalTransitionStyle = .crossDissolve
-            self.present(alertVC, animated: true)
-        }
+    func presentGFAlert(title: String, message: String, buttonTitle: String) {
+        let alertVC = GFAlertVC(title: title, message: message, buttonTitle: buttonTitle)
+        alertVC.modalPresentationStyle = .overFullScreen
+        alertVC.modalTransitionStyle = .crossDissolve
+        present(alertVC, animated: true)
+    }
+    
+    func presentDeefaultError() {
+        let alertVC = GFAlertVC(title: "Somethiong Went Wrong",
+                                message: "We were unable to complete your task at this time. Please try again.",
+                                buttonTitle: "Ok")
+        alertVC.modalPresentationStyle = .overFullScreen
+        alertVC.modalTransitionStyle = .crossDissolve
+        present(alertVC, animated: true)
     }
     
     /// Presents a Safari view controller to display a web page.
