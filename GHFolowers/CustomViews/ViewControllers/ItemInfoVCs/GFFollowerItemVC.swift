@@ -36,7 +36,7 @@ class GFFollowerItemVC: GFItemInfoVC {
         itemInfoViewTwo.set(itemIfonType: .following, withCount: user.following)
         
         // Set up the action button to get followers
-        actionButton.set(backgroundColor: .systemGreen, title: "Get Followers")
+        actionButton.set(color: .systemGreen, title: "Get Followers", systemImageName: SFSymbols.persons)
     }
     
     // MARK: - Actions

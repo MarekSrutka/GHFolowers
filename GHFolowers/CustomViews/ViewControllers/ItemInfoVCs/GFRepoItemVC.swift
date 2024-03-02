@@ -36,7 +36,7 @@ class GFRepoItemVC: GFItemInfoVC {
         itemInfoViewTwo.set(itemIfonType: .gists, withCount: user.publicGists)
         
         // Set up the action button for GitHub Profile
-        actionButton.set(backgroundColor: .systemPurple, title: "GitHub Profile")
+        actionButton.set(color: .systemPurple, title: "GitHub Profile", systemImageName: SFSymbols.person)
     }
     
     // MARK: - Actions
